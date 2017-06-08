@@ -21,7 +21,6 @@ public class TestOne {
              ) {
             System.out.println(a);
 
-
             System.out.println("a");
         }
         Arrays.asList("a", "b", "c").forEach(new TestOne()::show );
