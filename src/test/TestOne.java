@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -54,18 +56,37 @@ public class TestOne {
         try {
             System.out.println("output: " + engine.eval("function show() {return 10;}; show();"));// output: 10
             System.out.println("1+1");
-            System.out.println("output:"+engine.eval("1+1"));
+            System.out.println("output:" + engine.eval("1+1"));
         } catch (ScriptException e) {
             e.printStackTrace();
         }
         /**
          * 在Java 8中，引入了新的并行排序，它比前者的排序速度更快
          */
-        int  []  aryInt = {1,2,4,8,5};
+        int[] aryInt = {1, 2, 4, 8, 5};
         Arrays.parallelSort(aryInt);
-        for (int i :aryInt){
+        for (int i : aryInt) {
             System.out.println(i);
         }//1 2 4 5 8
+        /**
+         * Java 8允许我们给接口添加一个非抽象的方法实现，只需要使用 default关键字即可，这个特征又叫做扩展方法
+         */
+        Formula formula = new Formula() {
+            @Override
+            public double calculate(int a) {
+                return sqrt(a * 100);
+            }
+        };
+        System.out.println(formula.sqrt(16));//4.0
+        System.out.println(formula.calculate(100));//100.0
+        Map<Integer, String> map = new HashMap<>();
+        /**
+         * map操作
+         */
+        for (int i = 0; i < 10; i++) {
+            map.putIfAbsent(i, "val" + i);
+            System.out.println( map.get(i));
+        }
     }
 
     public void show(String str) {
