@@ -85,7 +85,7 @@ public class TestOne {
          */
         for (int i = 0; i < 10; i++) {
             map.putIfAbsent(i, "val" + i);
-            System.out.println( map.get(i));
+            System.out.println(map.get(i));
         }
     }
 
