@@ -3,10 +3,14 @@ package test;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -56,7 +60,7 @@ public class TestOne {
         try {
             System.out.println("output: " + engine.eval("function show() {return 10;}; show();"));// output: 10
             System.out.println("1+1");
-            System.out.println("output:" + engine.eval("1+1"));
+            System.out.println("output:" + engine.eval("1+1"));//2
         } catch (ScriptException e) {
             e.printStackTrace();
         }
@@ -87,10 +91,35 @@ public class TestOne {
             map.putIfAbsent(i, "val" + i);
             System.out.println(map.get(i));
         }
+        LocalDate today = LocalDate.now();
+        System.out.println(today);
+        Date now = new Date();
+        System.out.println("..............................");
+        System.out.println(now);
+        Date date = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String format = sdf.format(now);
+        try {
+            date = sdf.parse(format);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
+        Calendar calendar = Calendar.getInstance();//日历对象
+        calendar.setTime(new Date());//设置当前日期
+        int n =1;
+        calendar.setTime(new Date());//设置当前日期
+        calendar.add(Calendar.MONTH, -n);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        System.out.println(calendar.getTime());
+        System.out.println(new Date());//输出当前时间
+
     }
 
     public void show(String str) {
         System.out.println(str + ":");
     }
-
 }
